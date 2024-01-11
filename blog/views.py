@@ -12,10 +12,13 @@ def post_list(request):
                   context)
 
 
-def post_detail(request, id):
+def post_detail(request, year, month, day, post_slug):
     post = get_object_or_404(Post,
-                             id=id,
-                             status=Post.Status.PUBLISHED)
+                             status=Post.Status.PUBLISHED,
+                             slug=post_slug, 
+                             publish__year=year,
+                             publish__month=month,
+                             publish__day=day)
     
     context = {
         'post' : post
