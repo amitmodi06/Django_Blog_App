@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models.query import QuerySet
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 
 class PublishedManager(models.Manager):
@@ -9,7 +10,6 @@ class PublishedManager(models.Manager):
         return super().get_queryset().filter(status=Post.Status.PUBLISHED)
 
 class Post(models.Model):
-
     class Status(models.TextChoices):
         DRAFT = 'DF', 'Draft'
         PUBLISHED = 'PB', 'Published'
@@ -30,7 +30,6 @@ class Post(models.Model):
     
     objects = models.Manager() #Django Default Manager
     published = PublishedManager() #My custom manager
-
     
     class Meta:
         ordering = ['-publish']
@@ -38,6 +37,10 @@ class Post(models.Model):
             models.Index(fields=['-publish']),
         ]
 
-
     def __str__(self):
         return self.title
+    
+    def get_absolute_url(self):
+        return reverse("blog:post_detail", 
+                       args=[self.id])
+    
