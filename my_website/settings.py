@@ -122,3 +122,13 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Email server configuration
+# EMAIL_BACKEND setting is for printing email to the console. No need to use SMTP server for this.
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# Following configuration is for sending the email using SMTP server
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = '<your_account@gmail.com>'
+# EMAIL_HOST_PASSWORD = '<xxxxxxxxxxxxxxxx>'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
