@@ -25,8 +25,8 @@
             </p>
             {{ comment.body|linebreaks}}
         </div>
-        { %empty% }
+        {% empty %}
             <p>There are no comments.</p>
     {% endfor %}
-    {% include "blog/post/include/comment_form.html" %}
+    {% include "blog/post/includes/comment_form.html" %}
 {% endblock content %}
