@@ -16,6 +16,8 @@
     <p class="date">
         Published {{ post.publish }} by {{ post.author }}
     </p>
+    {% comment %} markdown filter will transform line break into <p> tags 
+        and transform Makrdown formatting into HTML{% endcomment %}
     {{ post.body|markdown }}
     <p>
         <a href="{% url "blog:post_share" post.id %}">
