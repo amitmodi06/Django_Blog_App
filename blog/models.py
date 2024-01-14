@@ -32,7 +32,7 @@ class Post(models.Model):
     
     objects = models.Manager() #Django Default Manager
     published = PublishedManager() #My custom manager
-    tags = TaggableManager() #django-taggit manager
+    tags = TaggableManager() #django-taggit manager - to add, retrieve, and remove tags from Post object
     
     class Meta:
         ordering = ['-publish']
