@@ -49,8 +49,12 @@ def post_detail(request, year, month, day, post_slug):
     comments = post.comments.filter(active=True)
     form = CommentForm()
 
+    #Retrieving posts by similarty of tags
+    #Regrieves tag ids for current post
     post_tags_ids = post.tags.values_list('id', flat=True)
+    # Get all posts with these tags and exclude current post
     similar_posts = Post.published.filter(tags__in=post_tags_ids).exclude(id=post.id)
+    # Order posts with number of common tags and then published date and limit to 4 results
     similar_posts = similar_posts.annotate(same_tags=Count('tags')).order_by('-same_tags', '-publish')[:4]
 
     context = {
