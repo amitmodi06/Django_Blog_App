@@ -16,6 +16,11 @@
         <p>This is my blog. 
             I've published {% total_posts %} posts so far.
         </p>
+        <p>
+            <a href="{% url "blog:post_feed" %}">
+                RSS Feed
+            </a>
+        </p>
         <h3>Latest posts</h3>
         {% show_latest_posts 10 %}
         <h3>Most commented posts</h3>
